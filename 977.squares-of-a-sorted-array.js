@@ -11,32 +11,16 @@
  */
 var sortedSquares = function(nums) {
     const result = [];
-    let left = -1,right = 0;
-    for(let i = 0; i < nums.length; i++) {
-        if(nums[i] < 0) {
-            left = i;
-            right = i+1;
-        }
-    }
+    let left = 0,right = nums.length-1;
 
-    while(left >= 0 || right < nums.length) {
-        if(left === -1) {
-            result.push(nums[right] * nums[right]);
-            right++;
-        }
-        else if(right === nums.length) {
-            result.push(nums[left] * nums[left]);
-            left--;
-        }
-        else {
-            if(Math.abs(nums[left]) < Math.abs(nums[right])) {
-                result.push(nums[left] * nums[left]);
-                left--;
-            }
-            else {
-                result.push(nums[right] * nums[right]);
-                right++;
-            }
+    let i = nums.length-1;
+    while(left <= right) {
+        if(nums[left] + nums[right] > 0) {
+            result[i--] = nums[right] * nums[right];
+            right--;
+        } else {
+            result[i--] = nums[left] * nums[left];
+            left++;
         }
     }
 
