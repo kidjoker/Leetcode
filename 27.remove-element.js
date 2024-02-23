@@ -10,17 +10,24 @@
  * @param {number} val
  * @return {number}
  */
-var removeElement = function(nums, val) {
-    let slow = 0, fast = 0;
+var removeElement = function (nums, val) {
+  let left = 0;
+  let right = nums.length-1;
 
-    for(;fast < nums.length; fast++) {
-        if(nums[fast] !== val) {
-            nums[slow++] = nums[fast];
-        }
+  while(left <= right) {
+    while(left <= right && nums[left] !== val) {
+        left++;
     }
+    while(left <= right && nums[right] === val) {
+        right--;
+    }
+    if(left < right) {
+        nums[left++] = nums[right--];
+    }
+  }
 
-    return slow;
+  return left;
 };
 // @lc code=end
 
-removeElement([3,2,2,3], 3);
+removeElement([3,2,2,3], 3)
