@@ -28,4 +28,5 @@ var sortedSquares = function(nums) {
 };
 // @lc code=end
 
-sortedSquares([1]);
+hoistedFunction();
+function hoistedFunction(){ console.log(" Hello world! "); }
