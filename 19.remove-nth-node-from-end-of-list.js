@@ -18,20 +18,21 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function (head, n) {
-let dummyHead = new ListNode(-1, head)
+  let dummyHead = new ListNode(-1, head);
   let left = dummyHead;
   let right = left;
 
   let distance = 0;
-  while (right.next) {
+  while (distance < n) {
     right = right.next;
     distance++;
   }
 
-  while(distance > n) {
+  while (right.next) {
     left = left.next;
-    distance--;
-  }1
+    right = right.next;
+  }
+  1;
 
   left.next = left.next.next;
   return dummyHead.next;
